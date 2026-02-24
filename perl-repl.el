@@ -131,7 +131,7 @@
       (perl--send-region-to-repl (point) end))))
 
 (defun perl-send-buffer ()
-  "Send the entire buffer to the perli process."
+  "Send the entire buffer to the Perl-REPL."
   (interactive)
   (perl--send-region-to-repl (point-min) (point-max)))
 
