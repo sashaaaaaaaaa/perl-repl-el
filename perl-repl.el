@@ -29,7 +29,7 @@
 ;;            to allow warning free byte compilation on emacs 30.
 ;;
 ;; Feb, 2026  Sasha Abbott added functions perl-repl-other-window,
-;;            switch-to-perl-repl, perl-send-buffer and perl-send-defun
+;;            switch-to-perl-repl, perl-send-buffer and perl-send-defun.
 
 
 (require 'comint)
