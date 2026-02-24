@@ -86,7 +86,7 @@
       (perl-repl))))
 
 (defun switch-to-perl-repl (eob-p)
-  "Switch to the Perl REPL buffer, starting it if needed.
+  "Start a Perl REPL, or switch to a running one. 
 Reuses an existing REPL window if visible, otherwise switches in current window.
 With prefix argument EOB-P, move point to the end of the buffer."
   (interactive "P")
