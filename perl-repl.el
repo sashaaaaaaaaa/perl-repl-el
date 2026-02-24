@@ -71,6 +71,17 @@
       (select-window (get-buffer-window buffer))
       (perl-repl-mode))))
 
+(defun perl-repl-other-window ()
+  "Run a Perl REPL in other window, reusing existing buffer/window if available."
+  (interactive)
+  (let* ((buf (get-buffer perl--repl-buffer-name))
+         (win (and buf (get-buffer-window buf))))
+    (cond
+     (win (select-window win))
+     (t   (switch-to-buffer-other-window (get-buffer-create perl--repl-buffer-name))))
+    (unless (process-live-p (perl--get-repl-buffer-process))
+      (perl-repl))))
+
 (define-derived-mode perl-repl-mode comint-mode perl--repl-buffer-name/raw
   "Major mode for `perl-repl'.
 \\{perl-repl-mode-map}"
@@ -85,7 +96,6 @@
   (set (make-local-variable 'paragraph-start) perl-repl-prompt-regexp)
   ;;  (perl--repl-hook-cperl-keys);;  Setting up these bindings should pry be optional PH20250913.
   )
-
 
 (defun perl--repl-hook-cperl-keys ()
   (define-key cperl-mode-map (kbd "C-c C-c") 'perl-send-expression)
@@ -119,6 +129,11 @@
     (let ((end (point)))
       (perl-repl--backward-to-start-of-expr)
       (perl--send-region-to-repl (point) end))))
+
+(defun perl-send-buffer ()
+  "Send the entire buffer to the perli process."
+  (interactive)
+  (perl--send-region-to-repl (point-min) (point-max)))
 
 ;; Helpers
 ;; =======
