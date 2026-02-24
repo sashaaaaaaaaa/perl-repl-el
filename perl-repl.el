@@ -29,7 +29,7 @@
 ;;            to allow warning free byte compilation on emacs 30.
 ;;
 ;; Feb, 2026  Sasha Abbott added functions perl-repl-other-window,
-;;            switch-to-perl-repl and perl-send-buffer
+;;            switch-to-perl-repl, perl-send-buffer and perl-send-defun
 
 
 (require 'comint)
@@ -120,7 +120,8 @@ With prefix argument EOB-P, move point to the end of the buffer."
   (define-key cperl-mode-map (kbd "C-c C-r") 'perl-send-region)
   (define-key cperl-mode-map (kbd "C-c C-l") 'perl-send-line)
   (define-key cperl-mode-map (kbd "C-c C-s") 'perl-send-buffer)
-  (define-key cperl-mode-map (kbd "C-c C-z") 'switch-to-perl-repl))
+  (define-key cperl-mode-map (kbd "C-c C-z") 'switch-to-perl-repl)
+  (define-key cperl-mode-map (kbd "C-M-x")   'perl-send-defun))
 
 (defun perl-send-region (start end)
   "Send the current region (if any) to the Perl-REPL."
@@ -153,6 +154,14 @@ With prefix argument EOB-P, move point to the end of the buffer."
   "Send the entire buffer to the Perl-REPL."
   (interactive)
   (perl--send-region-to-repl (point-min) (point-max)))
+
+(defun perl-send-defun ()
+  "Send the defun at point to the Perl-REPL."
+  (interactive)
+  (save-excursion
+    (let ((end (progn (end-of-defun) (point)))
+          (start (progn (beginning-of-defun) (point))))
+      (perl--send-region-to-repl start end))))
 
 ;; Helpers
 ;; =======
