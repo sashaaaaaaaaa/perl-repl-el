@@ -100,7 +100,8 @@
 (defun perl--repl-hook-cperl-keys ()
   (define-key cperl-mode-map (kbd "C-c C-c") 'perl-send-expression)
   (define-key cperl-mode-map (kbd "C-c C-r") 'perl-send-region)
-  (define-key cperl-mode-map (kbd "C-c C-l") 'perl-send-line))
+  (define-key cperl-mode-map (kbd "C-c C-l") 'perl-send-line)
+  (define-key cperl-mode-map (kbd "C-c C-s") 'perl-send-buffer))
 
 
 (defun perl-send-region (start end)
