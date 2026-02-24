@@ -27,6 +27,9 @@
 ;;
 ;; Sep, 2025  Paul Horton enabled lexical binding and made minor changes
 ;;            to allow warning free byte compilation on emacs 30.
+;;
+;; Feb, 2026  Sasha Abbott added functions perl-repl-other-window,
+;;            switch-to-perl-repl and perl-send-buffer
 
 
 (require 'comint)
