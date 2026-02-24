@@ -103,7 +103,6 @@
   (define-key cperl-mode-map (kbd "C-c C-l") 'perl-send-line)
   (define-key cperl-mode-map (kbd "C-c C-s") 'perl-send-buffer))
 
-
 (defun perl-send-region (start end)
   "Send the current region (if any) to the Perl-REPL."
   (interactive "r")
