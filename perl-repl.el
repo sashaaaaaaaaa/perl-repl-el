@@ -82,6 +82,21 @@
     (unless (process-live-p (perl--get-repl-buffer-process))
       (perl-repl))))
 
+(defun switch-to-perl-repl (eob-p)
+  "Switch to the Perl REPL buffer, starting it if needed.
+Reuses an existing REPL window if visible, otherwise switches in current window.
+With prefix argument EOB-P, move point to the end of the buffer."
+  (interactive "P")
+  (let ((win (get-buffer-window perl--repl-buffer-name)))
+    (if win
+        (select-window win)
+      (switch-to-buffer (get-buffer-create perl--repl-buffer-name))))
+  (unless (process-live-p (perl--get-repl-buffer-process))
+    (perl-repl))
+  (when eob-p
+    (push-mark)
+    (goto-char (point-max))))
+
 (define-derived-mode perl-repl-mode comint-mode perl--repl-buffer-name/raw
   "Major mode for `perl-repl'.
 \\{perl-repl-mode-map}"
