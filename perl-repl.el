@@ -86,14 +86,15 @@
       (perl-repl))))
 
 (defun switch-to-perl-repl (eob-p)
-  "Start a Perl REPL, or switch to a running one. 
-Reuses an existing REPL window if visible, otherwise switches in current window.
-With prefix argument EOB-P, move point to the end of the buffer."
+  "Start a Perl REPL, or switch to a running one."
   (interactive "P")
-  (let ((win (get-buffer-window perl--repl-buffer-name)))
-    (if win
-        (select-window win)
-      (switch-to-buffer (get-buffer-create perl--repl-buffer-name))))
+  (let* ((buf (get-buffer-create perl--repl-buffer-name))
+         (win (get-buffer-window buf)))
+    (if (eq (selected-window) win)
+        (other-window -1)
+      (if win
+          (select-window win)
+        (switch-to-buffer-other-window buf))))
   (unless (process-live-p (perl--get-repl-buffer-process))
     (perl-repl))
   (when eob-p
