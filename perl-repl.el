@@ -116,7 +116,8 @@ With prefix argument EOB-P, move point to the end of the buffer."
   (define-key cperl-mode-map (kbd "C-c C-c") 'perl-send-expression)
   (define-key cperl-mode-map (kbd "C-c C-r") 'perl-send-region)
   (define-key cperl-mode-map (kbd "C-c C-l") 'perl-send-line)
-  (define-key cperl-mode-map (kbd "C-c C-s") 'perl-send-buffer))
+  (define-key cperl-mode-map (kbd "C-c C-s") 'perl-send-buffer)
+  (define-key cperl-mode-map (kbd "C-c C-z") 'switch-to-perl-repl))
 
 (defun perl-send-region (start end)
   "Send the current region (if any) to the Perl-REPL."
