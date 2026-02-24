@@ -8,7 +8,7 @@ Simple comint derived mode to run a Perl REPL in emacs.
 
 ## Author
 
-I (PH) think Franciso Jurado (https://github.com/quicoju) is the original author. 
+Franciso Jurado (https://github.com/quicoju) is the original author. 
 
 ### Contributors
 
