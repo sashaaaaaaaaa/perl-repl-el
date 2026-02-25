@@ -96,7 +96,6 @@ Unless ARG is non-nil, switches to this buffer."
   ;;  (perl--repl-hook-cperl-keys);;  Setting up these bindings should pry be optional PH20250913.
   )
 
-
 (defun perl--repl-hook-cperl-keys ()
   (define-key cperl-mode-map (kbd "C-c C-c") 'perl-send-expression)
   (define-key cperl-mode-map (kbd "C-c C-r") 'perl-send-region)
