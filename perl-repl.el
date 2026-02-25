@@ -122,6 +122,7 @@
   (define-key cperl-mode-map (kbd "C-c C-l") 'perl-send-line)
   (define-key cperl-mode-map (kbd "C-c C-s") 'perl-send-buffer)
   (define-key cperl-mode-map (kbd "C-c C-z") 'switch-to-perl-repl)
+  (define-key perl-repl-mode-map (kbd "C-c C-z") 'switch-to-perl-repl)
   (define-key cperl-mode-map (kbd "C-M-x")   'perl-send-defun))
 
 (defun perl-send-region (start end)
