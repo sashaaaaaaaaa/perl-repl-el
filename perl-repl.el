@@ -74,17 +74,6 @@
       (select-window (get-buffer-window buffer))
       (perl-repl-mode))))
 
-(defun perl-repl-other-window ()
-  "Run a Perl REPL in other window, reusing existing buffer/window if available."
-  (interactive)
-  (let* ((buf (get-buffer perl--repl-buffer-name))
-         (win (and buf (get-buffer-window buf))))
-    (cond
-     (win (select-window win))
-     (t   (switch-to-buffer-other-window (get-buffer-create perl--repl-buffer-name))))
-    (unless (process-live-p (perl--get-repl-buffer-process))
-      (perl-repl))))
-
 (defun switch-to-perl-repl (eob-p)
   "Start a Perl REPL, or switch to a running one."
   (interactive "P")
